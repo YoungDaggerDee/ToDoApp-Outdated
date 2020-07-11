@@ -30,11 +30,11 @@
     }
 
     .margin3 {
-      margin-top: 350px;
+      margin-top: 405px;
     }
 
     .margin4 {
-      margin-top: 200px;
+      margin-top: 255px;
     }
   </style>
   <!-- BOOTSTRAP -->
@@ -127,7 +127,7 @@
         <div class='container'>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-secondary active">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked onclick='fillList(false)'>From
+              <input type="radio" name="options" id="option1" autocomplete="off" onclick='fillList(false)'>From
               First
             </label>
             <label class="btn btn-secondary">
@@ -135,11 +135,11 @@
             </label>
           </div>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked onclick='mode(true)'>Light
+            <label class="btn btn-secondary active" id='lightmode'>
+              <input type="radio" name="options" autocomplete="off" onclick='mode(true)'>Light
             </label>
-            <label class="btn btn-secondary">
-              <input type="radio" name="options" id="option2" autocomplete="off" onclick='mode(false)'>Dark
+            <label class="btn btn-secondary" id='darkmode'>
+              <input type="radio" name="options" autocomplete="off" onclick='mode(false)'>Dark
             </label>
           </div>
           <div class="input-group mb-3">
@@ -157,6 +157,10 @@
           id='togglesize' onclick='showSize()'>
           Toggle Size
         </button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block"
+          onClick="window.open('../Settings/main.html','pagename','height=500,width=320')">
+          Settings
+        </button>
         <p class='text-center margin2 text-light' id='loadtime'>Load time</p>
         <p class='text-center margin text-light' id='github'></p>
 
@@ -170,7 +174,7 @@
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <h4>TASK MANAGER</h4>
+      <h4 id='app-header' class='text-light'>TASK MANAGER</h4>
     </nav>
   </div>
   <!-- SPACER -->

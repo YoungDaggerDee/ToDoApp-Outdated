@@ -1,14 +1,42 @@
-const timerStart = Date.now();
+const timerStart = Date.now()
+const settings_path = '../settings.json'
 let dev_mode = false
 const tasks = []
 let direction = false
 let marin
 let priority = 0
+const body = document.querySelector('body')
 const elements = {
     ul: document.querySelector('.list-group'),
     input: document.querySelector('#input')
 }
-const body = document.querySelector('body')
+// LOAD SETTINGS
+$.getJSON(settings_path, data => {
+    fillList(data.from)
+    mode(!data.dark_mode)
+})
+// DEVELOPMENT MODE
+$.getJSON('../package.json', data => {
+    $("#footer-text").html(`Latest Update: ${data.version}`)
+
+    if (data.mode.toLowerCase() == 'development') {
+        margin = 3
+        $("#app-header").append(' - DEV')
+        $('#devtoggle').removeClass('d-none')
+        $("#loadtime").removeClass('d-none')
+        $('#copyright').addClass('d-none')
+        $('#github').removeClass('d-none')
+    }
+    if (data.mode.toLowerCase() == 'production') {
+        margin = 4
+        $('#footer-text').css('display', 'none')
+        $('#devtoggle').addClass('d-none')
+        $('#github').addClass('d-none')
+        $("#loadtime").addClass('d-none')
+        updateSize ``
+    }
+})
+// TASK CLASS
 class Task {
     constructor(text, priority) {
         this.text = text
@@ -17,7 +45,7 @@ class Task {
         this.done = false
     }
 }
-
+// MARK OR UNMARK: AS DONE
 function setActive(e) {
     if (e.classList.contains('t')) {
         e.innerHTML = `<del class="text-muted">${tasks[e.id].text}</del>`
@@ -29,11 +57,11 @@ function setActive(e) {
         e.innerHTML = tasks[e.id].text
     }
 }
-
+// SET PRIORITY
 const setPriority = e => {
     priority = e
 }
-
+// ADD TASK
 function Add() {
     if (tasks.includes(input.value) || input.value.length <= 0) {
         alert('Invalid Task!')
@@ -58,6 +86,7 @@ function Add() {
         input.value = ''
     }
 }
+// REMOVE TASK
 const removeTask = e => {
     console.log('double click')
     let id = e.id
@@ -67,7 +96,7 @@ const removeTask = e => {
     updateSize ``
 }
 
-
+// FILL 
 function fillList(switcher, e) {
     elements.ul.innerHTML = ''
     if (switcher == 'none') {} else if (switcher == false) {
@@ -219,26 +248,7 @@ const contentPush = () => {
         push = !push
     }
 }
-// DEVELOPMENT MODE
-$.getJSON('../package.json', data => {
-    $("#footer-text").html(`Latest Update: ${data.version}`)
 
-    if (data.mode.toLowerCase() == 'development') {
-        margin = 3
-        $('#devtoggle').removeClass('d-none')
-        $("#loadtime").removeClass('d-none')
-        $('#copyright').addClass('d-none')
-        $('#github').removeClass('d-none')
-    }
-    if (data.mode.toLowerCase() == 'production') {
-        margin = 4
-        $('#footer-text').css('display', 'none')
-        $('#devtoggle').addClass('d-none')
-        $('#github').addClass('d-none')
-        $("#loadtime").addClass('d-none')
-        updateSize ``
-    }
-})
 $(document).ready(function () {
     const loadSpeed = Date.now() - timerStart
     $('#loadtime').html("Load time: " + loadSpeed + "ms")

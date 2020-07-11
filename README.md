@@ -1,4 +1,5 @@
 # ToDoApp
+
 ## Informations
 
 This app can run only on macos (darwin). To run this on windows you have to edit couple things in manin.js
@@ -25,10 +26,10 @@ To create build use npm run build, make sure that in package.json, you have "mod
 
 ## Incoming features
 
-### Database connection
+- Database connection
 
-### Database login
+- Database login
 
-### Settings
+- Settings
 
-### Saving Task in local file
+- Saving Task in local file
