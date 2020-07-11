@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Task Manager / To do List</title>
+  <style>
+    body {
+      transition: background-color ease-in 0.5s !important;
+      font-weight: bold !important;
+    }
+
+    .stickyfooter {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .list-group {
+      transition: margin 700ms !important;
+    }
+
+    .margin {
+      margin-top: 5px;
+    }
+
+    .margin2 {
+      margin-top: 15px;
+    }
+
+    .margin3 {
+      margin-top: 207px;
+    }
+  </style>
+  <!-- BOOTSTRAP -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <!-- JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body style='background-color:transparent;user-select:none;'>
+  <!-- MODAL -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Do you need help?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h1>KeyBinds</h1>
+          <!-- SPACER -->
+          <div style='margin-top:40px'></div>
+          <!-- KEYBINDS -->
+          <div>
+            <h3>Add Task</h3>
+            <p>You can use Add butto next to the input or hit enter.</p>
+          </div>
+          <div>
+            <h3>Mark as Done</h3>
+            <p>Just click on the task.</p>
+          </div>
+          <div>
+            <h3>Remove from List</h3>
+            <p>Double click on the task, you have to click outside of the text otherwise it will not be removed.</p>
+          </div>
+          <div>
+            <h3>Commands are faster</h3>
+            <p>You don't want to click all the time, you can use our commands.</p>
+            <ul>
+              <li>#1 Normal</li>
+              <li>#2 More important</li>
+              <li>#3 The most important</li>
+            </ul>
+            <p>USAGE: #1Clear car | #2 Buy paper</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- VERSION LOG -->
+  <div class="modal fade" id="versions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="DevLog">Dev log</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body container" id='version_log'>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- NAV  -->
+  <div class="fixed-top">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <!-- BUTTONS -->
+        <div class='container'>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked onclick='fillList(false)'>From
+              First
+            </label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" id="option2" autocomplete="off" onclick='fillList(true)'>From Last
+            </label>
+          </div>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked onclick='mode(true)'>Light
+            </label>
+            <label class="btn btn-secondary">
+              <input type="radio" name="options" id="option2" autocomplete="off" onclick='mode(false)'>Dark
+            </label>
+          </div>
+          <div class="input-group mb-3">
+            <input type="text" placeholder='Search' class="form-control margin2" aria-label="Text input with checkbox"
+              id='search'>
+          </div>
+        </div>
+        <button type="button" class="btn btn-secondary btn-lg btn-block mt-2" onclick='clearList()'>Clear List</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal"
+          data-target="#exampleModal">Help</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" id='devtoggle' data-toggle="modal"
+          data-target="#versions">Dev
+          log</button>
+        <p class='text-center margin2 text-light' id='loadtime'>Load time</p>
+        <p class='text-center margin text-light' id='github'></p>
+      </div>
+
+    </div>
+
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" onclick='removeSearch();fillList("none");contentPush()' type="button"
+        data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <h4>TASK MANAGER</h4>
+    </nav>
+  </div>
+  <!-- SPACER -->
+  <div style='margin-top:30px;'></div>
+  <!-- INPUT -->
+  <div class="input-group p-5">
+    <input type="text" class="form-control" id='input' aria-label="Text input with segmented dropdown button">
+    <div class="input-group-append">
+      <button type="button" class="btn btn-outline-secondary" onclick='Add()'>Add</button>
+      <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only"></span>
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item text-dark" href="#" onclick='setPriority(0)'>Normal</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item text-primary" href="#" onclick='setPriority(1)'>More Important</a>
+        <div role="separator" class="dropdown-divider"></div>
+        <a class="dropdown-item text-danger" href="#" onclick='setPriority(2)'>The most important</a>
+      </div>
+    </div>
+  </div>
+  <!-- LIST -->
+  <ul class="list-group" id='list'>
+  </ul>
+  <!-- Footer -->
+  <footer class="page-footer font-small blue stickyfooter">
+    <div class="footer-copyright text-center py-3" id='footer-text'>© 2020 Copyright:
+      <a href="#"> MDBootstrap.com</a>
+    </div>
+  </footer>
+  <!-- Footer -->
+  <!-- SCRIPTS -->
+  <script src='site.js'></script>
+  </script>
+  <script>
+  </script>
+</body>
+
+</html>
