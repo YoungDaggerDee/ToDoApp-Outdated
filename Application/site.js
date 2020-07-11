@@ -1,7 +1,6 @@
 const timerStart = Date.now();
 let dev_mode = false
 const tasks = []
-const done = []
 let direction = false
 let marin
 let priority = 0
@@ -15,15 +14,18 @@ class Task {
         this.text = text
         this.priority = priority
         this.favorite = false
+        this.done = false
     }
 }
 
 function setActive(e) {
     if (e.classList.contains('t')) {
         e.innerHTML = `<del class="text-muted">${tasks[e.id].text}</del>`
+        tasks[e.id].done = true
         e.classList.remove('t')
     } else {
         e.classList.add('t')
+        tasks[e.id].done = false
         e.innerHTML = tasks[e.id].text
     }
 }
@@ -90,9 +92,17 @@ function fillList(switcher, e) {
                 if (color == 'text-dark') {
                     color = 'text-light'
                 }
-                elements.ul.innerHTML += `<li class="list-group-item bg-dark well margin t ${color}" onclick='setActive(this)'  ondblclick="removeTask(this)" id='${i}'>${tasks[i].text}</li>`
+                if (tasks[i].done) {
+                    elements.ul.innerHTML += `<li class="list-group-item bg-dark well margin t ${color}" onclick='setActive(this)'  ondblclick="removeTask(this)" id='${i}'><del class="text-muted">${tasks[i].text}</del></li>`
+                } else {
+                    elements.ul.innerHTML += `<li class="list-group-item bg-dark well margin t ${color}" onclick='setActive(this)'  ondblclick="removeTask(this)" id='${i}'>${tasks[i].text}</li>`
+                }
             } else {
-                elements.ul.innerHTML += `<li class="list-group-item bg-white well margin t ${color}" onclick='setActive(this)'  ondblclick="removeTask(this)" id='${i}'>${tasks[i].text}</li>`
+                if (tasks[i].done) {
+                    elements.ul.innerHTML += `<li class="list-group-item bg-white well margin t ${color}" onclick='setActive(this)'  ondblclick="removeTask(this)" id='${i}'><del class="text-muted">${tasks[i].text}</del></li>`
+                } else {
+                    elements.ul.innerHTML += `<li class="list-group-item bg-white well margin t ${color}" onclick='setActive(this)'  ondblclick="removeTask(this)" id='${i}'>${tasks[i].text}</li>`
+                }
             }
         } else {
             let tmpInt = tasks.length - i - 1
@@ -111,9 +121,17 @@ function fillList(switcher, e) {
                 if (color == 'text-dark') {
                     color = 'text-light'
                 }
-                elements.ul.innerHTML += `<li class="list-group-item bg-dark well margin t ${color}" onclick='setActive(this)'  ondblclick="removeTask(this)" id='${tmpInt}'>${tasks[tmpInt].text}</li>`
+                if (tasks[tmpInt].done) {
+                    elements.ul.innerHTML += `<li class="list-group-item bg-dark well margin t ${color}" onclick='setActive(this)'  ondblclick="removeTask(this)" id='${tmpInt}'><del class="text-muted">${tasks[tmpInt].text}</del></li>`
+                } else {
+                    elements.ul.innerHTML += `<li class="list-group-item bg-dark well margin t ${color}" onclick='setActive(this)'  ondblclick="removeTask(this)" id='${tmpInt}'>${tasks[tmpInt].text}</li>`
+                }
             } else {
-                elements.ul.innerHTML += `<li class="list-group-item bg-white well margin t ${color}" onclick='setActive(this)' ondblclick="removeTask(this)" id='${tmpInt}'>${tasks[tmpInt].text}</li>`
+                if (tasks[tmpInt].done) {
+                    elements.ul.innerHTML += `<li class="list-group-item bg-white well margin t ${color}" onclick='setActive(this)' ondblclick="removeTask(this)" id='${tmpInt}'><del class="text-muted">${tasks[tmpInt].text}</del></li>`
+                } else {
+                    elements.ul.innerHTML += `<li class="list-group-item bg-white well margin t ${color}" onclick='setActive(this)' ondblclick="removeTask(this)" id='${tmpInt}'>${tasks[tmpInt].text}</li>`
+                }
             }
         }
     }
