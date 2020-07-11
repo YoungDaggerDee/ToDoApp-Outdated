@@ -1,0 +1,39 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.4.7",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron --enable-transparent-visuals .",
+    "build": "electron-packager . Build",
+    "update": "node updater.js",
+    "log": "node logs.js"
+  },
+  "build": {
+    "appId": "com.epenywis.quickstart",
+    "productName": "Task manager"
+  },
+  "mode": "development",
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Daniel Seiner",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^9.0.4",
+    "electron-packager": "^14.2.1"
+  },
+  "dependencies": {
+    "electron-builder": "^22.7.0",
+    "electron-reload": "^1.5.0",
+    "mysql": "^2.18.1",
+    "nexe": "^3.3.2",
+    "readline": "^1.3.0",
+    "reload": "^3.1.0"
+  }
+}
