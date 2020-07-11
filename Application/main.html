@@ -30,7 +30,11 @@
     }
 
     .margin3 {
-      margin-top: 207px;
+      margin-top: 350px;
+    }
+
+    .margin4 {
+      margin-top: 200px;
     }
   </style>
   <!-- BOOTSTRAP -->
@@ -149,8 +153,13 @@
         <button type="button" class="btn btn-secondary btn-lg btn-block" id='devtoggle' data-toggle="modal"
           data-target="#versions">Dev
           log</button>
+        <button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="button" aria-pressed="false"
+          id='togglesize' onclick='showSize()'>
+          Toggle Size
+        </button>
         <p class='text-center margin2 text-light' id='loadtime'>Load time</p>
         <p class='text-center margin text-light' id='github'></p>
+
       </div>
 
     </div>
@@ -189,8 +198,7 @@
   </ul>
   <!-- Footer -->
   <footer class="page-footer font-small blue stickyfooter">
-    <div class="footer-copyright text-center py-3" id='footer-text'>© 2020 Copyright:
-      <a href="#"> MDBootstrap.com</a>
+    <div class="footer-copyright text-center py-3" id='footer-text'>0
     </div>
   </footer>
   <!-- Footer -->

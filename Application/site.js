@@ -3,6 +3,7 @@ let dev_mode = false
 const tasks = []
 const done = []
 let direction = false
+let marin
 let priority = 0
 const elements = {
     ul: document.querySelector('.list-group'),
@@ -27,9 +28,6 @@ function setActive(e) {
     }
 }
 
-function setRemoved(e) {
-
-}
 const setPriority = e => {
     priority = e
 }
@@ -54,6 +52,7 @@ function Add() {
             tasks.push(new Task(input.value, 0))
         }
         fillList('none', 'none')
+        updateSize ``
         input.value = ''
     }
 }
@@ -63,6 +62,7 @@ const removeTask = e => {
     console.log(id)
     tasks.splice(id, 1)
     fillList('none', 'none')
+    updateSize ``
 }
 
 
@@ -194,10 +194,10 @@ $('#search').focusout(() => {
 let push = false
 const contentPush = () => {
     if (!push) {
-        $('#list').addClass('margin3')
+        $('#list').addClass((margin == 3) ? 'margin3' : 'margin4')
         push = !push
     } else {
-        $('#list').removeClass('margin3')
+        $('#list').removeClass((margin == 3) ? 'margin3' : 'margin4')
         push = !push
     }
 }
@@ -206,20 +206,35 @@ $.getJSON('../package.json', data => {
     $("#footer-text").html(`Latest Update: ${data.version}`)
 
     if (data.mode.toLowerCase() == 'development') {
+        margin = 3
         $('#devtoggle').removeClass('d-none')
         $("#loadtime").removeClass('d-none')
         $('#copyright').addClass('d-none')
         $('#github').removeClass('d-none')
     }
     if (data.mode.toLowerCase() == 'production') {
+        margin = 4
+        $('#footer-text').css('display', 'none')
         $('#devtoggle').addClass('d-none')
         $('#github').addClass('d-none')
         $("#loadtime").addClass('d-none')
-        $('#footer-text').html('© 2020 Copyright: <a href="#"> Daniel Seiner</a>')
+        updateSize ``
     }
 })
 $(document).ready(function () {
     const loadSpeed = Date.now() - timerStart
     $('#loadtime').html("Load time: " + loadSpeed + "ms")
-    $("#github").html('<a href="#"> Github </a>')
+    $("#github").html('<a href="https://github.com/YoungDaggerDee/ToDoApp" target="popup"> Github </a>')
 })
+
+const showSize = () => {
+    if ($('#footer-text').css('display') == 'block') {
+        $('#footer-text').fadeOut('slow')
+    } else {
+        $('#footer-text').fadeIn('slow')
+    }
+}
+
+const updateSize = () => {
+    $('#footer-text').html(tasks.length)
+}
