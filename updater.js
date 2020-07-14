@@ -4,8 +4,9 @@ const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+let version_url = 'JSON/version_log.json'
 let config = fs.readFileSync('package.json')
-let log = fs.readFileSync('version_log.json')
+let log = fs.readFileSync(version_url)
 let log_json = JSON.parse(log)
 let json = JSON.parse(config)
 console.log('Old version ->' + json.version)
@@ -46,7 +47,7 @@ rl.question("news:  ", function (text) {
     console.log(update['datetime'])
     log_json.push(update)
     global_update = update
-    fs.writeFileSync("version_log.json", JSON.stringify(log_json))
+    fs.writeFileSync(version_url, JSON.stringify(log_json))
     rl.close()
 })
 

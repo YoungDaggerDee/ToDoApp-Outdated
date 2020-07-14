@@ -1,8 +1,7 @@
 const timerStart = Date.now()
-const settings_path = '../settings.json'
-let dev_mode = false
+const settings_path = '../../JSON/settings.json'
+let dev_mode = direction = false
 const tasks = []
-let direction = false
 let marin
 let priority = 0
 const body = document.querySelector('body')
@@ -16,12 +15,11 @@ $.getJSON(settings_path, data => {
     mode(!data.dark_mode)
 })
 // DEVELOPMENT MODE
-$.getJSON('../package.json', data => {
-    $("#footer-text").html(`Latest Update: ${data.version}`)
+$.getJSON('../../package.json', data => {
 
     if (data.mode.toLowerCase() == 'development') {
         margin = 3
-        $("#app-header").append(' - DEV')
+        $('#app-header').html(`${data.version} - DEV`)
         $('#devtoggle').removeClass('d-none')
         $("#loadtime").removeClass('d-none')
         $('#copyright').addClass('d-none')
@@ -196,16 +194,16 @@ elements.input.onkeyup = e => {
 }
 
 // VERSION STUFF
-$.getJSON("../version_log.json", function (json) {
+$.getJSON("../../JSON/version_log.json", json => {
     $('#version_log').html('')
     if (json == '[]') {
         console.log('ERROR WITH LOADING VERSION_LOG! VERSION LOG IS EMPTY')
         $('#version_log').html('Version log is empty, please check console')
     }
     for (s of json) {
-        $('#version_log').append(`<h3>${s.version}</h3><p>${s.text}</p><p class='text-right text-secondary '>${s.datetime}</p>`)
+        $('#version_log').append((s.text == json[json.length - 1].text) ? `<h3>${s.version}   <span class ="badge badge-secondary"> New </span></h3><p>${s.text}</p><p class='text-right text-secondary '>${s.datetime}</p>` : `<h3>${s.version}</h3><p>${s.text}</p><p class='text-right text-secondary '>${s.datetime}</p>`)
     }
-});
+})
 
 
 const mode = e => {

@@ -10,11 +10,12 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 400,
     height: 900,
+    resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  mainWindow.loadFile('Application/main.html')
+  mainWindow.loadFile('Application/Main/main.html')
 }
 app.whenReady().then(() => {
   createWindow()
@@ -24,5 +25,6 @@ app.whenReady().then(() => {
   })
 })
 app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
+  // COMMENT IF STATEMENT UNDER, TO BE ABLE TO RUN THIS APP ON EVERY OS
+  // if (process.platform !== 'darwin') app.quit()
 })
