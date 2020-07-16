@@ -30,11 +30,11 @@
     }
 
     .margin3 {
-      margin-top: 405px;
+      margin-top: 520px;
     }
 
     .margin4 {
-      margin-top: 255px;
+      margin-top: 370px;
     }
   </style>
   <!-- BOOTSTRAP -->
@@ -147,9 +147,21 @@
               id='search'>
           </div>
         </div>
-        <button type="button" class="btn btn-secondary btn-lg btn-block mt-2" onclick='clearList()'>Clear List</button>
+        <!-- ABOUT -->
+        <button type="button" class="btn btn-secondary btn-lg btn-block"
+          onClick="window.open('../About/main.html','About - ToDoApp','height=500,width=600')">
+          About
+        </button>
+        <!-- HELP  -->
         <button type="button" class="btn btn-secondary btn-lg btn-block" data-toggle="modal"
           data-target="#exampleModal">Help</button>
+        <!-- SETTINGS -->
+        <button type="button" class="btn btn-secondary btn-lg btn-block"
+          onClick="window.open('../Settings/main.html','pagename','height=500,width=320')">
+          Settings
+        </button>
+        <!-- CLEAR LIST -->
+        <button type="button" class="btn btn-secondary btn-lg btn-block mt-2" onclick='clearList()'>Clear List</button>
         <button type="button" class="btn btn-secondary btn-lg btn-block" id='devtoggle' data-toggle="modal"
           data-target="#versions">Dev
           log</button>
@@ -157,13 +169,10 @@
           id='togglesize' onclick='showSize()'>
           Toggle Size
         </button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block"
-          onClick="window.open('../Settings/main.html','pagename','height=500,width=320')">
-          Settings
-        </button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block"
-          onClick="window.open('../About/main.html','About - ToDoApp','height=500,width=600')">
-          About
+        <!-- CHECK FOR UPDATES -->
+        <button type="button" class="btn btn-secondary btn-lg btn-block" id='checkforupdates'
+          onClick="window.open('../Updates/main.html','Check for Update - ToDoApp','height=500,width=600')">
+          Check for Updates <span class="badge badge-light d-none" id='updates-count'></span>
         </button>
         <p class='text-center margin2 text-light' id='loadtime'>Load time</p>
         <p class='text-center margin text-light' id='github'></p>

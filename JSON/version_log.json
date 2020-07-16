@@ -1,1 +1,57 @@
-[{"version":"1.4.0","text":"Commands (#1, #2, #3) -> select priority","datetime":"21:31 | 9/6/2020"},{"version":"1.4.1","text":"Background color switcher (dark,light mode)","datetime":"21:32 | 9/6/2020"},{"version":"1.4.2","text":"Bug fixes ( priority color was black in dark mode )","datetime":"21:33 | 9/6/2020"},{"version":"1.4.3","text":"Seach bar, List margin on search focus","datetime":"23:59 | 9/6/2020"},{"version":"1.4.4","text":"Animations, bug fixes","datetime":"0:5 | 10/6/2020"},{"version":"1.4.5","text":"Fixed bugs, new animations added ","datetime":"12:30 | 10/6/2020"},{"version":"1.4.6","text":"From first mark fix","datetime":"12:42 | 10/6/2020"},{"version":"1.4.7","text":"Modes -> development, production","datetime":"13:9 | 10/6/2020"},{"version":"1.4.8","text":"Show list size, Github repository, More options for developers","datetime":"16:28 | 11/6/2020"},{"version":"1.4.9","text":"Folders","datetime":"23:27 | 12/6/2020"},{"version":"1.5.0","text":"New Folder System","datetime":"23:32 | 12/6/2020"}]
+[
+  {
+    "version": "1.4.0",
+    "text": "Commands (#1, #2, #3) -> select priority",
+    "datetime": "21:31 | 9/6/2020"
+  },
+  {
+    "version": "1.4.1",
+    "text": "Background color switcher (dark,light mode)",
+    "datetime": "21:32 | 9/6/2020"
+  },
+  {
+    "version": "1.4.2",
+    "text": "Bug fixes ( priority color was black in dark mode )",
+    "datetime": "21:33 | 9/6/2020"
+  },
+  {
+    "version": "1.4.3",
+    "text": "Seach bar, List margin on search focus",
+    "datetime": "23:59 | 9/6/2020"
+  },
+  {
+    "version": "1.4.4",
+    "text": "Animations, bug fixes",
+    "datetime": "0:5 | 10/6/2020"
+  },
+  {
+    "version": "1.4.5",
+    "text": "Fixed bugs, new animations added ",
+    "datetime": "12:30 | 10/6/2020"
+  },
+  {
+    "version": "1.4.6",
+    "text": "From first mark fix",
+    "datetime": "12:42 | 10/6/2020"
+  },
+  {
+    "version": "1.4.7",
+    "text": "Modes -> development, production",
+    "datetime": "13:9 | 10/6/2020"
+  },
+  {
+    "version": "1.4.8",
+    "text": "Show list size, Github repository, More options for developers",
+    "datetime": "16:28 | 11/6/2020"
+  },
+  {
+    "version": "1.4.9",
+    "text": "Folders",
+    "datetime": "23:27 | 12/6/2020"
+  },
+  {
+    "version": "1.5.0",
+    "text": "New Folder System",
+    "datetime": "23:32 | 12/6/2020"
+  }
+]

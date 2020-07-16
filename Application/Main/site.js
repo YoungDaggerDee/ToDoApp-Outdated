@@ -2,12 +2,33 @@ const timerStart = Date.now()
 const settings_path = '../../JSON/settings.json'
 let dev_mode = direction = false
 const tasks = []
+let local_version
 let marin
 let priority = 0
 const body = document.querySelector('body')
 const elements = {
     ul: document.querySelector('.list-group'),
     input: document.querySelector('#input')
+}
+// LOAD VERSION && CHECK IF ITS UP TO DATE
+$.getJSON('../../package.json', local_data => {
+    local_version = local_data.version
+})
+$.getJSON('https://raw.githubusercontent.com/YoungDaggerDee/ToDoApp/master/package.json',
+    data => {
+        let tmp_local = versionInt(local_version)
+        let tmp_server = versionInt(data.version)
+        console.log(tmp_server, tmp_local)
+        if (tmp_server - tmp_local != 0) {
+            $('#updates-count').html(tmp_server - tmp_local)
+            $('#updates-count').removeClass('d-none')
+        } else {
+            $('#updates-count').addClass('d-none')
+        }
+    })
+// MAKE INT FROM VERSION
+const versionInt = e => {
+    return parseInt(e[0] + e[2] + e[4])
 }
 // LOAD SETTINGS
 $.getJSON(settings_path, data => {
@@ -165,21 +186,13 @@ function fillList(switcher, e) {
 }
 
 
-const startUp = () => {
-    elements.ul.innerHTML = ''
-    for (let i = 0; i < 10; i++) {
-
-    }
-}
 
 const clearList = () => {
-    console.log('Clear list')
     tasks.length = 0
     fillList('none', 'none')
 }
 
 const backgroundControl = () => {
-    console.log("hey")
     if ($('body').css("background-color") == "transparent") {
         $('body').css('background-color', 'white')
     } else {
@@ -197,7 +210,7 @@ elements.input.onkeyup = e => {
 $.getJSON("../../JSON/version_log.json", json => {
     $('#version_log').html('')
     if (json == '[]') {
-        console.log('ERROR WITH LOADING VERSION_LOG! VERSION LOG IS EMPTY')
+        console.error('ERROR WITH LOADING VERSION_LOG! VERSION LOG IS EMPTY')
         $('#version_log').html('Version log is empty, please check console')
     }
     for (s of json) {
@@ -261,6 +274,4 @@ const showSize = () => {
     }
 }
 
-const updateSize = () => {
-    $('#footer-text').html(tasks.length)
-}
+const updateSize = () => $('#footer-text').html(tasks.length)
